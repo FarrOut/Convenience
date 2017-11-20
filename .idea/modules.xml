@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Convenience.iml" filepath="$PROJECT_DIR$/Convenience.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/audio.iml" filepath="$PROJECT_DIR$/.idea/modules/audio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/audio_main.iml" filepath="$PROJECT_DIR$/.idea/modules/audio_main.iml" group="audio" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/audio_test.iml" filepath="$PROJECT_DIR$/.idea/modules/audio_test.iml" group="audio" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/file.iml" filepath="$PROJECT_DIR$/.idea/modules/file.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/file_main.iml" filepath="$PROJECT_DIR$/.idea/modules/file_main.iml" group="file" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/file_test.iml" filepath="$PROJECT_DIR$/.idea/modules/file_test.iml" group="file" />
     </modules>
   </component>
 </project>
