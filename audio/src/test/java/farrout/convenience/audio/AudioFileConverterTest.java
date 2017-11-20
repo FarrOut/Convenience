@@ -1,4 +1,4 @@
-package com.dvsoft.libra.transcriber.audio;
+package farrout.convenience.audio;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,8 +33,8 @@ public class AudioFileConverterTest
 	{
 		AudioFormat targetFormat = new AudioFormat((float) 16000, 16, 1, true, false);
 
-		File inFile = new File(getClass().getClassLoader().getResource("samples\"" + OSR_uk_000_0020_8k.wav").getFile());
-		AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(AudioFileConverter.convertAudioFile(inFile, AudioSystem.Type.WAVE, targetFormat));
+		File inFile = new File(getClass().getClassLoader().getResource("samples\"" + "OSR_uk_000_0020_8k.wav").getFile());
+		AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(farrout.convenenience.audio.AudioFileConverter.convertAudioFile(inFile, AudioFileFormat.Type.WAVE, targetFormat));
 		AudioFormat format = fileFormat.getFormat();
 
 		for (Map.Entry<String, Object> entry : format.properties().entrySet())
@@ -55,7 +55,7 @@ public class AudioFileConverterTest
 		AudioFormat targetFormat = new AudioFormat((float) 16000, 16, 1, true, false);
 
 		File inFile = new File(getClass().getClassLoader().getResource("samples\"" +"Police_Chatter.wav").getFile());
-		AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(AudioFileConverter.convertAudioFile(inFile, AudioSystem.Type.WAVE, targetFormat));
+		AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(farrout.convenenience.audio.AudioFileConverter.convertAudioFile(inFile, AudioFileFormat.Type.WAVE, targetFormat));
 		AudioFormat format = fileFormat.getFormat();
 
 		for (Map.Entry<String, Object> entry : format.properties().entrySet())

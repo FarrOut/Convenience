@@ -1,6 +1,6 @@
 package farrout.convenenience.audio;
 
-import com.dvsoft.libra.transcriber.stream.StreamUtil;
+import farrout.convenience.file.stream.StreamUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,26 +28,26 @@ public class AudioFileConverter
 	{
 		AudioFileFormat inFileFormat;
 
-		AudioInputStream inFile =
+		AudioInputStream inStream =
 				AudioSystem.getAudioInputStream(inFile);
 
-		AudioFormat sourceFormat = inFile.getFormat();
+		AudioFormat sourceFormat = inStream.getFormat();
 
 		// query file type
-		inFileFormat = AudioSystem.getAudioFileFormat(inFile);
+		inFileFormat = AudioSystem.getAudioFileFormat(inStream);
 		if (!sourceFormat.matches(targetFormat))
 		{
 			// inFile is not the correct format, so let's try to convert it.
 
-			if (inFile.markSupported())
+			if (inStream.markSupported())
 			{
-				inFile.reset(); // rewind
+				inStream.reset(); // rewind
 			}
 
-			if (AudioSystem.isFileTypeSupported(targetType, inFile) && 
+			if (AudioSystem.isFileTypeSupported(targetType, inStream) &&
 			AudioSystem.isConversionSupported(targetFormat,	sourceFormat))
 			{
-				AudioInputStream convertedStream = AudioSystem.getAudioInputStream(targetFormat, inFile);
+				AudioInputStream convertedStream = AudioSystem.getAudioInputStream(targetFormat, inStream);
 
 				//Create temporary file
 				File outFile = StreamUtil.stream2file(convertedStream);
@@ -61,7 +61,7 @@ public class AudioFileConverter
 						+ inFileFormat.getType() + " file, " +
 						inFile.getPath() + ".");
 
-				inFile.close();
+				inStream.close();
 				convertedStream.close();
 				return outFile; // All done now
 			}
