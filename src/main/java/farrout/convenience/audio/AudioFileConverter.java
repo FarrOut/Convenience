@@ -1,4 +1,4 @@
-package farrout.convenenience.audio;
+package farrout.convenience.audio;
 
 import farrout.convenience.file.stream.StreamUtil;
 import org.slf4j.Logger;
@@ -11,6 +11,8 @@ import java.io.IOException;
 public class AudioFileConverter
 {
 	private static final Logger logger = LoggerFactory.getLogger(AudioFileConverter.class);
+
+	public static String TEMP_DIRECTORY = null; //Default temp dir
 
 	/**
 	 * Converts an audio file to a desired format
@@ -26,15 +28,12 @@ public class AudioFileConverter
 	public static File convertAudioFile(File inFile, AudioFileFormat.Type targetType, AudioFormat targetFormat) throws IOException,
 			UnsupportedAudioFileException, AudioConversionException
 	{
-		AudioFileFormat inFileFormat;
-
 		AudioInputStream inStream =
 				AudioSystem.getAudioInputStream(inFile);
 
 		AudioFormat sourceFormat = inStream.getFormat();
 
-		// query file type
-		inFileFormat = AudioSystem.getAudioFileFormat(inStream);
+
 		if (!sourceFormat.matches(targetFormat))
 		{
 			// inFile is not the correct format, so let's try to convert it.
@@ -50,16 +49,14 @@ public class AudioFileConverter
 				AudioInputStream convertedStream = AudioSystem.getAudioInputStream(targetFormat, inStream);
 
 				//Create temporary file
-				File outFile = StreamUtil.stream2file(convertedStream);
+				File outFile = StreamUtil.stream2file(convertedStream, TEMP_DIRECTORY);
 
 				// Write the AudioInputStream to the output file.
 				AudioSystem.write(convertedStream,
 						targetType, outFile);
 
-				logger.debug("Successfully made WAVE file, "
-						+ outFile.getPath() + ", from "
-						+ inFileFormat.getType() + " file, " +
-						inFile.getPath() + ".");
+				logger.debug("Successfully converted format of {} from {} to {}", inFile.getName(), sourceFormat
+						.toString(), targetFormat.toString());
 
 				inStream.close();
 				convertedStream.close();

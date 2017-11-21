@@ -1,29 +1,29 @@
 
 package farrout.convenience.file.stream;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.io.File;
 import java.io.InputStream;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class StreamTest
 {
-	@Before
-	public void setUp() throws Exception
-	{
-
-	}
-
 	@Test
 	public void testCreateTemporaryFile() throws Exception
 	{
-		InputStream stream = Mockito.mock(InputStream.class);
-		File file = StreamUtil.stream2file(stream);
+		final String filename = "Police_Chatter.wav";
+		InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("samples/" + filename);
 
-		assertEquals("tempFile", file.getName());
+		String dir = ".\\temp";
+
+		File file = StreamUtil.stream2file(stream, dir);
+
+		stream.close();
+
+		assertNotNull(file);
+		assertTrue(file.exists());
 	}
 }

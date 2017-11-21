@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <!--Path to log directory-->
+    <property name="PATH" value="../logs"/>
+
+    <appender name="general" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${PATH}/convenience.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${PATH}/convenience.%i.log.zip</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>200</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %-5level %class{36}.%M %L - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--Loggers-->
+    <logger name="convenience" level="debug" class="farrout.convenience" additivity="false">
+        <appender-ref ref="general"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="general"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
