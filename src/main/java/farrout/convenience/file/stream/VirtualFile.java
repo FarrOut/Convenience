@@ -9,9 +9,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class StreamUtil
+public class VirtualFile
 {
-	private static final Logger logger = LoggerFactory.getLogger(StreamUtil.class);
+	private static final Logger logger = LoggerFactory.getLogger(VirtualFile.class);
 
 	private static final String PREFIX = "stream2file";
 	private static final String SUFFIX = ".tmp";

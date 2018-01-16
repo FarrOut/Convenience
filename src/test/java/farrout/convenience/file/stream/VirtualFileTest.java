@@ -9,7 +9,7 @@ import java.io.InputStream;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-public class StreamTest
+public class VirtualFileTest
 {
 	@Test
 	public void testCreateTemporaryFile() throws Exception
