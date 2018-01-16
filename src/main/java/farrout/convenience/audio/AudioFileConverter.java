@@ -1,6 +1,6 @@
 package farrout.convenience.audio;
 
-import farrout.convenience.file.stream.StreamUtil;
+import farrout.convenience.file.stream.VirtualFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +49,7 @@ public class AudioFileConverter
 				AudioInputStream convertedStream = AudioSystem.getAudioInputStream(targetFormat, inStream);
 
 				//Create temporary file
-				File outFile = StreamUtil.stream2file(convertedStream, TEMP_DIRECTORY);
+				File outFile = VirtualFile.stream2file(convertedStream, TEMP_DIRECTORY);
 
 				// Write the AudioInputStream to the output file.
 				AudioSystem.write(convertedStream,
