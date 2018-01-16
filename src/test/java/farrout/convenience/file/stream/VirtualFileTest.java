@@ -19,7 +19,7 @@ public class VirtualFileTest
 
 		String dir = ".\\temp";
 
-		File file = StreamUtil.stream2file(stream, dir);
+		File file = VirtualFile.stream2file(stream, dir);
 
 		stream.close();
 
