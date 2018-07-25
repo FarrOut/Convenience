@@ -70,7 +70,7 @@ public class BeanFactory {
 			String packageName = object.getClass().getPackage().getName();
 			ObjectName name = BeanFactory.createObjectName(packageName, className);
 			register.add(name);
-			LOGGER.log(Level.FINER, "Registering MBean: {0}", name.toString());
+			LOGGER.info("Registering MBean: {0}", name.toString());
 			BeanFactory.mBeanServer.registerMBean(object, name);
 		} catch (InstanceAlreadyExistsException e) {
       LOGGER.warn("Error creating MBean. For debugging, you can ignore",e);
